@@ -1,38 +1,56 @@
-nav {
-    background-color: black;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+.NavBar {
+    padding: 0;
+    height: 4.5rem;
+    font-size: 1.2rem;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    justify-content: space-between;
 }
 
-.nav-item {
-    width: 100px;
-    text-align: center;
+.NavBar .navbar-brand {
+    color: rgb(32, 19, 224);
 }
 
-nav a {
-    color: #f0f2f5;
-    text-decoration: none;
+.NavBarLinks {
+    height: 100%;
 }
 
-nav a.active {
-    color: #f0f2f5;
+#nav-list {
+    height: 100%;
+}
+
+.NavBarLinks {
+    display: flex;
+    padding: 3px;
+    height: 100%;
+    align-items: center;
+    justify-content: right;
+}
+
+.NavBarLinks a:not(.isSmall) {
+    border-bottom: 5px solid rgba(0, 0, 0, 0);
+    width: 7rem;
+}
+
+.NavBarLinks {
+    margin-top: 5px;
+    text-align: right;
+}
+
+.NavBarLinks a:not(.active) {
+    color: rgb(149, 149, 149);
+}
+
+.NavBarLinks .active {
+    color: black;
     font-weight: bold;
-    border-bottom: 5px dotted;
-    box-sizing: border-box;
 }
 
-nav a.active:hover {
-    color: #f0f2f5 !important;
+.NavBarLinks .active:not(.isSmall) {
+    border-bottom: 5px solid rgb(32, 19, 224);
 }
 
-nav a:hover {
-    text-decoration: none;
-    color: #f0f2f5;
-}
-
-nav a.active.navbar-brand {
-    border-bottom: none;
-}
-
-nav a:not(.navbar-brand):hover {
+.NavBarLinks a:hover {
+    color: black;
     font-weight: bold;
 }
