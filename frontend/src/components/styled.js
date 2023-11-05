@@ -8,13 +8,10 @@ import {
     Typography,
 } from '@mui/material';
 import styled from '@emotion/styled';
-import bgImage from '../images/aksel-fristrup-w7eaCH6ShR4-unsplash.jpg';
-
 // ******************************************** App
 
 export const Background = styled('div')({
     position: 'fixed',
-    backgroundImage: `url(${bgImage})`,
     width: '100%',
     height: '100%',
     backgroundPosition: 'center',
@@ -33,10 +30,9 @@ export const StyledGrid = styled(Grid)(() => ({
     fontSize: '1.2rem',
 }));
 
-export const Brand = styled(Typography)(({ theme }) => ({
+export const Brand = styled(Typography)(() => ({
     marginLeft: '2rem',
     fontSize: '1.7rem',
-    color: theme.palette.secondary.main,
 }));
 
 // ******************************************** Forms
@@ -46,72 +42,40 @@ export const FormBox = styled(Box)(() => ({
     margin: 'auto',
 }));
 
-export const FormTextField = styled(TextField)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.dark,
-    borderRadius: theme.shape.borderRadius,
-    color: theme.palette.primary.text,
+export const FormTextField = styled(TextField)(() => ({
     '& label': {
-        '&:required': 'false',
-        color: theme.palette.primary.muted,
-    },
-    '& label.Mui-focused': {
-        color: theme.palette.secondary.main,
+        '&:required': 'false'
     },
     '& .MuiOutlinedInput-root': {
-        borderRadius: theme.shape.borderRadius,
-        color: theme.palette.primary.text,
-        transition: 'all 200ms',
-        '&: hover': {
-            backgroundColor: alpha(`${theme.palette.primary.light}`, 0.5),
-        },
-    },
-    '& .MuiInputBase-root.Mui-focused': {
-        backgroundColor: alpha(`${theme.palette.primary.light}`, 0.5),
-        borderRadius: theme.shape.borderRadius,
-        '& > fieldset': {
-            borderColor: theme.palette.secondary.main,
-        },
+        transition: 'all 200ms'
     },
     '& .MuiFormHelperText-root': {
         margin: 0,
-        paddingLeft: '.5rem',
+        paddingLeft: '.5rem'
     },
 }));
 
-export const ErrorSpan = styled('span')(({ theme }) => ({
-    color: theme.palette.error.main,
+export const ErrorSpan = styled('span')(() => ({
     position: 'absolute',
 }));
 
 // ******************************************** Buttons
 
-export const PrimaryButton = styled(Button)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.primary.main,
-    '&:hover': {
-        backgroundColor: theme.palette.secondary.dark,
-    },
+export const PrimaryButton = styled(Button)(() => ({
 }));
 
-export const CancelButton = styled(Button)(({ theme }) => ({
-    borderColor: theme.palette.primary.muted,
-    color: theme.palette.primary.muted,
-    '&:hover': {
-        borderColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.main,
-    },
+export const CancelButton = styled(Button)(() => ({
 }));
 
-export const DeleteButton = styled(Button)(({ theme }) => ({
+export const DeleteButton = styled(Button)(() => ({
     backgroundColor: 'rgb(220,0,0)',
     color: 'white',
     '&:hover': {
-        backgroundColor: 'red',
+        backgroundColor: 'rgb(100,100,100',
     },
 }));
 
 // ******************************************** Icons
 
-export const StyledIcon = styled(ListItemIcon)(({ theme }) => ({
-    color: theme.palette.primary.text,
+export const StyledIcon = styled(ListItemIcon)(() => ({
 }));

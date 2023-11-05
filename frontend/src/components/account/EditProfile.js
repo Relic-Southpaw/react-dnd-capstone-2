@@ -106,7 +106,7 @@ export default function EditProfile({ open, setOpen, username }) {
             sx={{
                 '& .MuiPaper-root': {
                     bottom: '5rem',
-                    bgcolor: 'primary.main',
+                    bgcolor: 'lightgrey',
                     width: 600,
                     padding: '0rem 4rem 1rem 4rem',
                 },
@@ -114,7 +114,7 @@ export default function EditProfile({ open, setOpen, username }) {
         >
             <DialogTitle
                 fontSize={'1.5rem'}
-                sx={{ color: 'primary.text', paddingBottom: 0 }}
+                sx={{ color: 'green', paddingBottom: 0 }}
             >
                 Edit Profile
             </DialogTitle>

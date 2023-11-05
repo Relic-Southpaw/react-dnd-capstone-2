@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, lazy, Suspense } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
+import ContentContainer from "../common/ContentContainer"
 import {
     Stack,
     Typography,
@@ -10,12 +11,8 @@ import {
     Divider,
 } from '@mui/material';
 import { Edit } from '@mui/icons-material';
-import ContentContainer from '../common/ContentContainer';
 import ProfileSkeleton from './ProfileSkeleton';
-import CollectionSkeleton from '../collection/CollectionSkeleton';
 import EditProfile from './EditProfile';
-
-const CollectionComp = lazy(() => import('../collection/Collection'));
 
 export default function Profile({ itemsOnPage }) {
     const { username } = useParams();
@@ -91,13 +88,10 @@ export default function Profile({ itemsOnPage }) {
                         item
                         xs={12}
                     >
-                        <Divider sx={{ color: 'primary.muted' }} />
+                        <Divider sx={{ color: 'blue' }} />
                     </Grid>
                 </Grid>
-                <Suspense fallback={<CollectionSkeleton itemsOnPage={itemsOnPage} />}>
-                    <CollectionComp itemsOnPage={itemsOnPage} />
-                </Suspense>
             </ContentContainer>
-        </Stack>
+        </Stack >
     );
 }

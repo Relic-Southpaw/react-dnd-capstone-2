@@ -55,7 +55,7 @@ const FormComponent = ({
                 >
                     <Typography
                         variant='h5'
-                        sx={{ color: 'primary.text' }}
+                        sx={{ color: 'indigo' }}
                     >
                         {header}
                     </Typography>
@@ -107,7 +107,7 @@ const FormComponent = ({
                                 <Typography
                                     sx={{
                                         textAlign: 'center',
-                                        color: 'primary.text',
+                                        color: 'violet',
                                         margin: 'auto',
                                     }}
                                 >
@@ -132,7 +132,7 @@ const FormComponent = ({
                                 >
                                     <CircularLoading
                                         size='1.3rem'
-                                        color='primary.dark'
+                                        color='purple'
                                     />
                                 </Box>
                             ) : null}

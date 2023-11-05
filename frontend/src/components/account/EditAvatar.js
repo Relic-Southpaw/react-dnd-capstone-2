@@ -38,13 +38,6 @@ export default function EditAvatar({ imageURL, handleFileUpload }) {
                             variant='contained'
                             component='span'
                             className='main-button'
-                            sx={{
-                                bgcolor: 'primary.dark',
-                                '&:hover': {
-                                    bgcolor: 'secondary.main',
-                                    color: 'primary.main',
-                                },
-                            }}
                         >
                             <PhotoCamera
                                 fontSize='small'

@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import UserContext from '../context/UserContext';
-import NotFound from '../components/NotFound';
+import UserContext from '../../context/UserContext';
+import NotFound from '../NotFound';
 import Home from '../Home';
 import LoginForm from '../account/LoginForm';
 import SignUpForm from '../account/SignUpForm';
 import Profile from '../account/Profile';
-import SearchResultsPage from '../search/SearchResultsPage';
 
 export default function AllRoutes() {
     const { loginUser, registerUser } = useContext(UserContext);
@@ -31,10 +30,6 @@ export default function AllRoutes() {
             <Route
                 path='/profile/:username'
                 element={<Profile itemsOnPage={9} />}
-            />
-            <Route
-                path='search/:path/:id'
-                element={<SearchResultsPage itemsOnPage={30} />}
             />
         </Routes>
     );

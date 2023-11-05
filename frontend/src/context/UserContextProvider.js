@@ -4,12 +4,12 @@ import { useNavigate } from "react-router"
 import DnDApi from '../api'
 import useLocalStorage from '../hooks/useLocalStorage'
 import jwt_decode from "jwt-decode"
-import LoadingSpinner from '../common/LoadingSpinner'
+import LoadingSpinner from '../components/common/LoadingSpinner'
 
 export const TOKEN_STORAGE_ID = "dnd-token";
 
 function UserContextProvider({ children }) {
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [currentUser, setCurrentUser] = useState('')
     const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID)
     const [userData, setUserData] = useState('');
@@ -52,25 +52,26 @@ function UserContextProvider({ children }) {
         }
     }
 
-    useEffect(() => {
-        async function getCurrentUser() {
-            if (token) {
-                try {
-                    const { username } = jwt_decode(token)
-                    DnDApi.token = token
-                    const user = await DnDApi.getCurrentUser(username)
-                    setCurrentUser(user)
-                    navigate('/')
-                } catch (err) {
-                    console.log(err)
-                    setCurrentUser('')
-                }
+
+    async function getCurrentUser(username) {
+        try {
+            const user = await DnDApi.getCurrentUser(username);
+            setUserData(user);
+        } catch (err) {
+            console.error('Error: ', err);
+            if (err[0] === 'Unauthorized') {
+                return logout();
             }
-            setIsLoading(false)
         }
-        setIsLoading(true)
-        getCurrentUser()
-    }, [token])
+    }
+    async function deleteUser() {
+        try {
+            const result = await DnDApi.deleteUser(currentUser);
+            return result;
+        } catch (err) {
+            console.error('Error: ', err);
+        }
+    }
 
     const logout = () => {
         setCurrentUser('')
