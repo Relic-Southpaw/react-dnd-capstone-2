@@ -108,6 +108,7 @@ class User {
       WHERE username = $1`,
             [reqUsername]
         );
+        consoel.log(userRes)
 
         if (!userRes.rows[0]) throw new NotFoundError(`No user: ${reqUsername}`);
 

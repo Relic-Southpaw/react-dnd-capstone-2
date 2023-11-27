@@ -34,15 +34,6 @@ router.get(
     }
 );
 
-/** PATCH /[username] { user } => { user }
- *
- * Data can include:
- *   { username, password, email, imageURL }
- *
- * Returns { username, email, imageURL }
- *
- * Authorization required: login, owner user
- **/
 
 router.patch(
     '/:username',

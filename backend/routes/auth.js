@@ -53,7 +53,7 @@ router.post('/register', async function (req, res, next) {
             const formattedErrs = formatErrors(errs);
             throw new BadRequestError(formattedErrs);
         }
-        
+
         const user = await User.register({ ...req.body });
         const token = createToken(user);
         return res.status(201).json({ token });
