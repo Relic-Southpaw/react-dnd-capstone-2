@@ -3,6 +3,7 @@ import NavBar from './components/navbar/NavBar';
 import { BrowserRouter } from 'react-router-dom';
 import AllRoutes from "./components/routes/AllRoutes"
 import UserContextProvider from './context/UserContextProvider';
+import Home from './components/Home';
 
 function App() {
   return (

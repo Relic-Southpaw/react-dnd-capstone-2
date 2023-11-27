@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import UserContext from "./UserContext";
 import { useNavigate } from "react-router"
 import DnDApi from '../api'
@@ -9,12 +9,23 @@ import LoadingSpinner from '../components/common/LoadingSpinner'
 export const TOKEN_STORAGE_ID = "dnd-token";
 
 function UserContextProvider({ children }) {
-    const [isLoading, setIsLoading] = useState(false)
-    const [currentUser, setCurrentUser] = useState('')
-    const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID)
+    const [isLoading, setIsLoading] = useState(true);
+    const [currentUser, setCurrentUser] = useState('');
+    const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
     const [userData, setUserData] = useState('');
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const saveToken = useCallback(() => {
+        DnDApi.token = token;
+        const { username } = jwt_decode(token);
+        setCurrentUser(username);
+    }, [token, setCurrentUser]);
+
+    useEffect(() => {
+        if (token) saveToken();
+        setIsLoading(false);
+    }, [token, saveToken]);
 
     async function registerUser(signUpData) {
         try {
@@ -30,11 +41,12 @@ function UserContextProvider({ children }) {
     async function loginUser(loginData) {
         try {
             let token = await DnDApi.login(loginData)
+            console.log(token)
             setToken(token)
-            return { success: true }
         } catch (err) {
             console.log(err)
-            return { success: false, err }
+            console.log("Potato")
+            return { err }
         }
     }
 

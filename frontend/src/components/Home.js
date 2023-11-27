@@ -1,28 +1,33 @@
 import './Home.css'
 import React, { useContext } from 'react'
 import UserContext from '../context/UserContext'
+import SpellBook from "./SpellBook"
 
 function Home() {
     const { currentUser } = useContext(UserContext)
     return (
         <div className="welcome container-sm">
             <h1 className='mb-4 fw-bold'>
-                DON"T KNOW YET
             </h1>
-            <p>
-                I HAVE NO CLUE
-            </p>
             {
                 currentUser
-                    ? <h2>
+                    ? <h2 style={{ color: "white" }}>
                         Welcome,
-                        <span className='text-capitalize'>
-                            {' ' + currentUser.firstName}!
+                        <span className='text-capitalize' style={{ color: "lightgreen" }}>
+                            {' ' + currentUser}!
                         </span>
+                        <br>
+                        </br>
+                        <p>Enjoy the Magic!!!</p>
                     </h2>
                     : null
             }
-        </div>
+            {
+                currentUser ?
+                    <SpellBook /> :
+                    <h2>LOG IN TO SEE THE MAGIC!!!</h2>
+            }
+        </div >
     )
 }
 
