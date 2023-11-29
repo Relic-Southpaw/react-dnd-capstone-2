@@ -13,6 +13,8 @@ function UserContextProvider({ children }) {
     const [currentUser, setCurrentUser] = useState('');
     const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
     const [userData, setUserData] = useState('');
+    const [userFavIds, setUserFavIds] = useState(new Set());
+    const [favorites, setFavorites] = useState('');
 
     const navigate = useNavigate();
 
@@ -50,17 +52,17 @@ function UserContextProvider({ children }) {
         }
     }
 
-    async function updateUser(editData) {
+    async function updateUser(formData, username) {
         try {
-            let newUserData = await DnDApi.editCurrentUser(
-                currentUser.username, editData
-            )
-            setCurrentUser(newUserData)
-            navigate('/')
-            return { success: true }
+            const result = await DnDApi.updateUser(formData, username);
+            const user = result.user;
+            if (result.token) {
+                setToken(result.token);
+                navigate(`/profile/${username}`);
+            }
+            setUserData({ ...user });
         } catch (err) {
-            console.log(err)
-            return { success: false, err }
+            return { msg: err };
         }
     }
 
@@ -91,6 +93,98 @@ function UserContextProvider({ children }) {
         navigate('/')
     }
 
+    // GET favorite ids for currentUser
+    const getFavIds = useCallback(async () => {
+        try {
+            const results = await DnDApi.getFavorites(currentUser);
+            setUserFavIds(new Set(results.favorites));
+        } catch (err) {
+            console.error('Error: ', err);
+        }
+    }, [currentUser, setUserFavIds]);
+
+    useEffect(() => {
+        if (currentUser) getFavIds();
+    }, [currentUser, getFavIds]);
+
+    /** Get game data for each game in collection
+     *
+     * formats userGameIDs to string
+     */
+    const getFavorites = useCallback(async () => {
+        try {
+            console.log(favorites)
+            if (!favorites) {
+                if (userFavIds.size) {
+                    const ress = localStorage.getItem("spells");
+                    const res = JSON.parse(ress)
+                    const results = res.filter((s) => {
+                        if (userFavIds.has(s.index)) {
+                            return s
+                        }
+                    })
+                    setFavorites(Array.isArray(results) ? results : [results]);
+                } else {
+                    setFavorites([]);
+                }
+            }
+        } catch (err) {
+            console.error('Error: ', err);
+        }
+    }, [favorites, setFavorites, userFavIds]);
+
+    /** Add game to currentUser collection
+     *
+     * @param {*} game
+     *
+     * will get collection if not set
+     *
+     * then update collection, userGameIDs, and colValue
+     *  with added game
+     */
+    async function addFavorite(spell) {
+        try {
+            setIsLoading(true);
+            const favId = spell.index;
+            // POST request to server
+            await DnDApi.addFavorite(currentUser, favId);
+            // if favorites is not set yet, call getFavorites
+            if (!favorites) {
+                await getFavorites();
+            }
+            setFavorites((prev) => [...prev, spell]);
+            setUserFavIds((prev) => new Set(prev).add(favId));
+            setIsLoading(false);
+        } catch (err) {
+            console.error('Error: ', err);
+        }
+    }
+
+    /** Remove game from currentUser collection
+     *
+     * @param {*} game
+     *
+     * then update collection, userGameIDs, and colValue
+     *  with removed game
+     */
+    async function removeFavorite(spell) {
+        try {
+            const favId = spell.index;
+            if (currentUser) {
+                await DnDApi.RemoveFavorite(currentUser, favId);
+                setFavorites((prev) => prev.filter((s) => s.index !== favId));
+                setUserFavIds((prev) => {
+                    const next = new Set(prev);
+                    next.delete(favId);
+                    return next;
+                });
+                // setColValue((prev) => (prev -= game.msrp));
+            }
+        } catch (err) {
+            console.error('Error: ', err);
+        }
+    }
+
     const onHomepage = window.location.pathname === '/'
 
     if (isLoading && !onHomepage) return <LoadingSpinner />
@@ -110,6 +204,15 @@ function UserContextProvider({ children }) {
                     logout,
                     navigate,
                     deleteUser,
+                    getFavorites,
+                    getFavIds,
+                    addFavorite,
+                    removeFavorite,
+                    setCurrentUser,
+                    setIsLoading,
+                    setUserFavIds,
+                    favorites,
+                    userFavIds,
                 }
             }
         >
@@ -117,5 +220,4 @@ function UserContextProvider({ children }) {
         </UserContext.Provider>
     )
 }
-
 export default UserContextProvider

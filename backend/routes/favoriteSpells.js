@@ -1,32 +1,20 @@
 'use strict';
 
 /** Routes for favorite spells. */
-const FavSpell = require('../models/FavSpell')
-const jsonschema = require('jsonschema');
 const express = require('express');
-const router = new express.Router();
-const { BadRequestError } = require('../expressError');
+const FavSpell = require('../models/FavSpell')
+const { ensureLoggedIn, ensureOwner } = require('../middleware/auth')
 
-// router.get(
-//     '/:username',
-//     ensureLoggedIn,
-//     ensureOwner,
-//     async function (req, res, next) {
-//         try {
-//             const { user } = await User.get(req.params.username);
-//             return res.json(user);
-//         } catch (err) {
-//             return next(err);
-//         }
-//     }
-// );
+const router = new express.Router();
 
 router.get(
     '/:username',
+    ensureLoggedIn,
+    ensureOwner,
     async function (req, res, next) {
         try {
             const favorites = await FavSpell.get(req.params.username);
-            return res.json(favorites);
+            return res.json({ favorites });
         } catch (err) {
             return next(err);
         }
@@ -35,10 +23,12 @@ router.get(
 
 router.post(
     '/:username/:spellId',
+    ensureLoggedIn,
+    ensureOwner,
     async function (req, res, next) {
         try {
             await FavSpell.add(req.params.username, req.params.spellId)
-            return
+            return res.status(201).json('added')
         } catch (err) {
             return next(err);
         }
@@ -47,11 +37,13 @@ router.post(
 
 router.delete(
     `/:username/:spellId`,
+    ensureLoggedIn,
+    ensureOwner,
     async function (req, res, next) {
         try {
-            await FavSpell.delete(req.params.username, req.params.spellId);
-            let uSpell = (req.params.username, req.params.spellId)
-            return res.json({ deleted: uSpell })
+            const result = await FavSpell.delete(req.params.username, req.params.spellId);
+            const statusCode = result === -1 ? 204 : 200;
+            return res.status(statusCode).json(result)
         } catch (err) {
             return next(err);
         }

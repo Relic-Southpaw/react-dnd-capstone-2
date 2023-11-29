@@ -1,7 +1,9 @@
-import React, { useContext, useEffect, useState, lazy, Suspense } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+//lazy, Suspense from above
 import { useParams, Navigate } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
 import ContentContainer from "../common/ContentContainer"
+import SpellCard from "../SpellCard"
 import {
     Stack,
     Typography,
@@ -14,9 +16,9 @@ import { Edit } from '@mui/icons-material';
 import ProfileSkeleton from './ProfileSkeleton';
 import EditProfile from './EditProfile';
 
-export default function Profile({ itemsOnPage }) {
+export default function Profile() {
     const { username } = useParams();
-    const { currentUser, getCurrentUser, userData, token } =
+    const { currentUser, getCurrentUser, userData, token, getFavorites, favorites } =
         useContext(UserContext);
 
     const [open, setOpen] = useState(false);
@@ -30,6 +32,11 @@ export default function Profile({ itemsOnPage }) {
         if (!userData && currentUser) getCurrentUser(username);
         // eslint-disable-next-line
     }, [currentUser, getCurrentUser]);
+
+    useEffect(() => {
+        if (currentUser) getFavorites()
+    }, [])
+
 
     if (!token) return <Navigate to={'/login'} />;
 
@@ -91,6 +98,15 @@ export default function Profile({ itemsOnPage }) {
                         <Divider sx={{ color: 'blue' }} />
                     </Grid>
                 </Grid>
+                <h3>Favorite Spells</h3>
+                <div className="App">
+                    {favorites.length === 0 && <span className="loading">No Spells yet!</span>}
+                    <ul className="spell-list">
+                        {favorites ? favorites.map((spell) => (
+                            <SpellCard key={spell.index} spell={spell} onProfilePage />
+                        )) : null}
+                    </ul>
+                </div>
             </ContentContainer>
         </Stack >
     );

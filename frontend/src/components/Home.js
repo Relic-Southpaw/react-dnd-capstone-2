@@ -25,7 +25,7 @@ function Home() {
             {
                 currentUser ?
                     <SpellBook /> :
-                    <h2>LOG IN TO SEE THE MAGIC!!!</h2>
+                    <h2 style={{ color: "white" }}>LOG IN TO SEE THE MAGIC!!!</h2>
             }
         </div >
     )

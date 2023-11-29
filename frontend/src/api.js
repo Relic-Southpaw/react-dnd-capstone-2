@@ -53,19 +53,33 @@ class DnDApi {
     // Get the current user
 
     static async getCurrentUser(username) {
-        let res = await this.request(`users/${username}`)
-        return res.user
+        let res = await this.request(`users/${username}`, {}, 'get')
+        return res
     }
 
     // Edit the current user 
 
-    static async editCurrentUser(username, data) {
-        let res = await this.request(`users/${username}`, data, 'patch')
-        return res.user
+    static async updateUser(formData, username) {
+        let res = await this.request(`users/${username}`, formData, 'patch');
+        return res;
     }
+
+
     //===== For spells on the favorites list ======
+    static async getFavorites(username) {
+        console.log("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+        let res = await this.request(`favorites/${username}`)
+        return res
+    }
+    static async addFavorite(username, spellId) {
+        let res = await this.request(`favorites/${username}/${spellId}`, {}, 'post')
+        return res
+    }
 
-
+    static async RemoveFavorite(username, spellId) {
+        let res = await this.request(`favorites/${username}/${spellId}`, {}, 'delete')
+        return res
+    }
 }
 
 

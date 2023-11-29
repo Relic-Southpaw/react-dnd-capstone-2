@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import ThirdPartyApi from "./ThirdPartyApi";
 import SpellCard from "./SpellCard";
 import "../styles.css";
-
 export default function SpellBook() {
     const [spells, setSpells] = useState([]);
 

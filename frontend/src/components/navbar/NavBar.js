@@ -8,6 +8,7 @@ const NavBar = () => {
     const { currentUser } = useContext(UserContext)
     return (
         <nav className='NavBar navbar navbar-expand bg-light'>
+            <a href='/' className="btn btn-secondary">SpellBook</a>
             <div className='NavBarLinks container-sm h-100 ml-auto'>
 
                 {currentUser ? <UserAccountMenu /> : <AnonUserLinks />}

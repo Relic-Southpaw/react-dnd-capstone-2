@@ -26,6 +26,10 @@ export default function EditProfile({ open, setOpen, username }) {
 
     // handle closing of dialog box
     const handleClose = () => {
+        console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF")
+        console.log(userData)
+        console.log(formData)
+        console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF")
         setFormErrors([]);
         setFormData(userData);
         setOpen(false);
@@ -33,6 +37,8 @@ export default function EditProfile({ open, setOpen, username }) {
 
     // handle file uploading of imageURL
     const handleFileUpload = (event) => {
+        console.log(event.target.files)
+        console.log("xlkfhsadlghag;lh")
         const file = event.target.files[0];
         const reader = new FileReader();
 
