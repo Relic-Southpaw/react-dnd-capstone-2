@@ -43,11 +43,8 @@ function UserContextProvider({ children }) {
     async function loginUser(loginData) {
         try {
             let token = await DnDApi.login(loginData)
-            console.log(token)
             setToken(token)
         } catch (err) {
-            console.log(err)
-            console.log("Potato")
             return { err }
         }
     }
@@ -107,13 +104,12 @@ function UserContextProvider({ children }) {
         if (currentUser) getFavIds();
     }, [currentUser, getFavIds]);
 
-    /** Get game data for each game in collection
+    /** Get spell data for each spell in favorites
      *
-     * formats userGameIDs to string
+     * formats userFavIds to string
      */
     const getFavorites = useCallback(async () => {
         try {
-            console.log(favorites)
             if (!favorites) {
                 if (userFavIds.size) {
                     const ress = localStorage.getItem("spells");
@@ -133,14 +129,14 @@ function UserContextProvider({ children }) {
         }
     }, [favorites, setFavorites, userFavIds]);
 
-    /** Add game to currentUser collection
+    /** Add spell to currentUser favorites
      *
-     * @param {*} game
+     * @param {*} spell
      *
-     * will get collection if not set
+     * will get favorites if not set
      *
-     * then update collection, userGameIDs, and colValue
-     *  with added game
+     * then update favorites, userFavIds, and colValue
+     *  with added spell
      */
     async function addFavorite(spell) {
         try {
@@ -160,12 +156,12 @@ function UserContextProvider({ children }) {
         }
     }
 
-    /** Remove game from currentUser collection
+    /** Remove spell from currentUser favorites
      *
-     * @param {*} game
+     * @param {*} spell
      *
-     * then update collection, userGameIDs, and colValue
-     *  with removed game
+     * then update favorites, userFavIds, and colValue
+     *  with removed spell
      */
     async function removeFavorite(spell) {
         try {
@@ -178,7 +174,6 @@ function UserContextProvider({ children }) {
                     next.delete(favId);
                     return next;
                 });
-                // setColValue((prev) => (prev -= game.msrp));
             }
         } catch (err) {
             console.error('Error: ', err);

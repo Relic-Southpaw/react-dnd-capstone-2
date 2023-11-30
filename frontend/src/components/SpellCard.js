@@ -14,14 +14,13 @@ export default function SpellCard({ spell, onProfilePage }) {
 
     const handleQuickAddClick = () => {
         if (!inFavorites) {
-            // POST request to server to add game
+            // POST request to server to add spell to favorites
             addFavorite(spell);
         }
     };
 
     const handleTrashClick = () => {
-        // POST request to server to delete game
-        console.log(spell)
+        // POST request to server to delete spell from favorites
         removeFavorite(spell);
 
     };

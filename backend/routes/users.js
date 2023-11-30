@@ -12,14 +12,6 @@ const userUpdateSchema = require('../schemas/userUpdate.json');
 
 const router = express.Router();
 
-/** GET /[username] => { user }
- *
- * Returns { username, email, imageURL }
- *  games = [gameID, ...]
- *  groups = [groupID, ...]
- * Authorization required: login, owner user
- **/
-
 router.get(
     '/:username',
     ensureLoggedIn,
