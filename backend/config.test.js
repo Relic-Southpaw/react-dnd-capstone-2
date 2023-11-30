@@ -18,15 +18,15 @@ describe('config can come from env', () => {
         delete env.SECRET_KEY;
         delete env.PORT;
         delete env.BCRYPT_WORK_FACTOR;
-        env.DATABASE = 'my_game_nights';
+        env.DATABASE = 'spellbook';
 
         expect(config.DB_URI()).toEqual(
-            'socket:/var/run/postgresql?db=my_game_nights'
+            'socket:/var/run/postgresql?db=spellbook'
         );
         env.NODE_ENV = 'test';
 
         expect(config.DB_URI()).toEqual(
-            'socket:/var/run/postgresql?db=my_game_nights_test'
+            'socket:/var/run/postgresql?db=spellbook_test'
         );
     });
 });

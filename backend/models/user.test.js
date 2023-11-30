@@ -98,7 +98,7 @@ describe('get', () => {
         });
     });
 
-    it('works if no games or groups for user', async () => {
+    it('works if no spells for user', async () => {
         let { user } = await User.get('u3');
 
         expect(user).toEqual({

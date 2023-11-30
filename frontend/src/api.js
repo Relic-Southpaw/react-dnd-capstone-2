@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "https://book-of-many-spells.onrender.com"
+
+// "http://localhost:3001";
+//  was the base URL past the ||
+// changing for Render going live.
 
 /** API Class.
  *
