@@ -6,7 +6,7 @@ import UserContextProvider from './context/UserContextProvider';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" class="bg-dark">
       <BrowserRouter>
         <UserContextProvider>
           <NavBar />
