@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 
 /** API Class.
  *
@@ -67,7 +67,6 @@ class DnDApi {
 
     //===== For spells on the favorites list ======
     static async getFavorites(username) {
-        console.log("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
         let res = await this.request(`favorites/${username}`)
         return res
     }
