@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "https://book-of-spells.onrender.com"
+const BASE_URL = process.env.REACT_APP_BASE_URL || "https://book-of-many-spells.onrender.com"
 
 // "http://localhost:3001";
 //  was the base URL past the ||
