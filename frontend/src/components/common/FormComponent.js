@@ -61,7 +61,7 @@ const FormComponent = ({
                     </Typography>
 
                     <Box sx={{ height: 24, width: 400, marginBottom: '.4rem' }}>
-                        {console.log(formErrors)}
+                        {console.log(formErrors[0])}
                         {typeof formErrors[0] === 'string' ? (
                             <ErrorSpan>{formErrors[0]}</ErrorSpan>
                         ) : null}
