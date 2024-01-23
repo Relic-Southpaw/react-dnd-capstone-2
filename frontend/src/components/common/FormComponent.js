@@ -62,9 +62,9 @@ const FormComponent = ({
 
                     <Box sx={{ height: 24, width: 400, marginBottom: '.4rem' }}>
                         {console.log(formErrors[0])}
-                        {typeof formErrors[0] === 'string' ? (
-                            <ErrorSpan>{formErrors[0]}</ErrorSpan>
-                        ) : null}
+                        {typeof formErrors[0] === undefined ? null : (
+                            <ErrorSpan>{"Something went wrong!"}</ErrorSpan>
+                        )}
                     </Box>
 
                     <Stack spacing={3}>
