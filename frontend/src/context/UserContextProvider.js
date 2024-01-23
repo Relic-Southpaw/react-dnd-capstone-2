@@ -33,7 +33,7 @@ function UserContextProvider({ children }) {
         try {
             let token = await DnDApi.register(signUpData)
             setToken(token)
-            console.log(token)
+            console.log(signUpData)
             return { success: true }
         } catch (err) {
             console.error('signup failed', err)
