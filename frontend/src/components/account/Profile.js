@@ -38,7 +38,7 @@ export default function Profile() {
     }, [])
 
 
-    if (!token) return <Navigate to={'/login'} />;
+    if (!token) return <Navigate to={'/'} />;
 
     return (
         <Stack>

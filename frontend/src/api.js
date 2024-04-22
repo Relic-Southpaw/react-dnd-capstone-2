@@ -47,9 +47,9 @@ class DnDApi {
         return res.token
     }
 
-    //Login the user if username/password are both correct
+    // the user if username/password are both correct
 
-    static async login(data) {
+    static async (data) {
         let res = await this.request('auth/token', data, 'post')
         return res.token
     }

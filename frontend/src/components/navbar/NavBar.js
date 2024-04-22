@@ -9,7 +9,7 @@ const NavBar = () => {
     return (
         <nav className='NavBar navbar navbar-expand bg-light'>
             <a href='/' className="btn btn-secondary">SpellBook</a>
-            <div className='NavBarLinks container-sm h-100 ml-auto'>
+            <div className='NavBarLinks sm h-100 ml-auto'>
 
                 {currentUser ? <UserAccountMenu /> : <AnonUserLinks />}
                 {/* <Link className='nav-item fs-4 fw-bolder p-5' to="/login">
