@@ -42,7 +42,7 @@ const FormComponent = ({ header, initialState, inputs, submitFunc }) => {
     <Stack sx={{ paddingTop: 10 }}>
       <ContentContainer alphascale={0.4} blur>
         <FormBox component="form" onSubmit={handleSubmit}>
-          <Typography variant="h5" sx={{ color: "indigo" }}>
+          <Typography variant="h5" sx={{ color: "white" }}>
             {header}
           </Typography>
 
