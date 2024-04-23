@@ -42,7 +42,7 @@ const FormComponent = ({ header, initialState, inputs, submitFunc }) => {
     <Stack sx={{ paddingTop: 10 }}>
       <ContentContainer alphascale={0.4} blur>
         <FormBox component="form" onSubmit={handleSubmit}>
-          <Typography variant="h5" sx={{ color: "white" }}>
+          <Typography variant="h5" sx={{ color: "" }}>
             {header}
           </Typography>
 
@@ -94,11 +94,11 @@ const FormComponent = ({ header, initialState, inputs, submitFunc }) => {
                 <Typography
                   sx={{
                     textAlign: "center",
-                    color: "orange",
+                    color: "Orange",
                     margin: "auto",
                   }}
                 >
-                   an account yet? Sign up
+                   Don't have an account yet? Sign up
                   <Link to={"/signup"}> here.</Link>
                 </Typography>
               </Box>

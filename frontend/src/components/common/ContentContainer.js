@@ -45,7 +45,7 @@ export default function ContentContainer({
                     {headerData ? (
                         <Typography
                             variant='h6'
-                            sx={{ color: 'orange' }}
+                            sx={{ color: 'yellow' }}
                         >{`(${headerData})`}</Typography>
                     ) : null}
                 </Stack>
