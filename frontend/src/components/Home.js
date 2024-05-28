@@ -6,7 +6,7 @@ import SpellBook from "./SpellBook"
 function Home() {
     const { currentUser } = useContext(UserContext)
     return (
-        <div className="welcome container-sm">
+        <div className="welcome sm">
             <h1 className='mb-4 fw-bold'>
             </h1>
             {

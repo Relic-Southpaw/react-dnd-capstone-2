@@ -16,7 +16,7 @@ export default function PasswordAdornment({
                 onClick={handleShowPassword}
                 onMouseDown={handleMouseDownPassword}
                 edge='end'
-                sx={{ color: 'magenta' }}
+                sx={{ color: 'white' }}
             >
                 {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>

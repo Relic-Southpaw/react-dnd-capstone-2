@@ -1,5 +1,5 @@
 body {
-  background-color: #290000;
+  background-: #290000;
 }
 
 .App {
@@ -8,7 +8,7 @@ body {
 }
 
 .loading {
-  color: #f7ce65;
+  : #f7ce65;
 }
 
 .spell-list {
@@ -22,7 +22,7 @@ body {
 }
 
 .spell-card {
-  background-color: #f7ce65;
+  background-: #f7ce65;
   border-radius: 1rem;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 .spell-card:hover {
-  border-color: aqua;
+  border-: aqua;
   border-width: 3px;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .spell-card hgroup h4 {
-  color: #930c10;
+  : #930c10;
   margin-bottom: 4px;
 }
 
@@ -52,7 +52,7 @@ body {
 }
 
 .spell-card .stats strong {
-  color: #030303;
+  : #030303;
   text-align: center;
 }
 
