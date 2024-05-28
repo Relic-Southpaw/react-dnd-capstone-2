@@ -33,8 +33,8 @@ function UserContextProvider({ children }) {
         try {
             let token = await DnDApi.register(signUpData)
             setToken(token)
+            console.log(token)
             console.log(signUpData)
-            navigate(`/`);
             return { success: true }
         } catch (err) {
             console.error('signup failed', err)
@@ -141,6 +141,7 @@ function UserContextProvider({ children }) {
      *  with added spell
      */
     async function addFavorite(spell) {
+        console.log("adding favorite...")
         try {
             setIsLoading(true);
             const favId = spell.index;
@@ -153,6 +154,7 @@ function UserContextProvider({ children }) {
             setFavorites((prev) => [...prev, spell]);
             setUserFavIds((prev) => new Set(prev).add(favId));
             setIsLoading(false);
+            console.log("might be added!!")
         } catch (err) {
             console.error('Error: ', err);
         }
